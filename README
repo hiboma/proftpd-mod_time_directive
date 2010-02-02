@@ -1,0 +1,34 @@
+ 
+                         mod_time_directive.c
+                 =======================================
+
+------------
+description
+------------
+
+    o 時刻に応じて読み込んだり読み込まなかったりするディレクティブを提供するモジュール
+
+------------
+usage
+------------
+
+    o 現在時刻が指定した時刻を超えたら読み込む
+    
+        LoadModule mod_time_directive.c
+        IfTimeFormat "%Y/%m/%d_%H:%M:%S"
+        
+        <IfTime +2010/01/01_00:00:00>
+           # parse directive if now() > 2010/0101
+           SomeDirective yes
+        </Iftime>
+
+    o 現在時刻が指定した時刻を超えてなかったら読み込む
+    
+        LoadModule mod_time_directive.c
+        IfTimeFormat "%Y/%m/%d_%H:%M:%S"
+        
+        <IfTime -2010/01/01_00:00:00>
+           # parse directive if now() < 2010/0101
+           SomeDirective yes
+        </Iftime
+        
